@@ -2727,8 +2727,7 @@ class CorrelationPlot(QMainWindow):
         self.feature21 = QCheckBox(features_list[21], self)
         self.feature22 = QCheckBox(features_list[22], self)
         self.feature23 = QCheckBox(features_list[23], self)
-        self.feature24 = QCheckBox(features_list[24], self)
-
+    
         self.feature0.setChecked(True)
         self.feature1.setChecked(True)
         self.feature2.setChecked(True)

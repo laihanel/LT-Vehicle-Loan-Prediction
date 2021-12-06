@@ -153,3 +153,37 @@ def get_top_abs_correlations(df, n=5):
 
 list1=get_top_abs_correlations(df_continuous,n=9)
 print(list1)
+
+
+'''
+11/22 Aihan added, file name unchanged
+test needed
+'''
+# Continuous variable vs categorical variables
+score_ranking = ["A-Very Low Risk", "B-Very Low Risk", "C-Very Low Risk", "D-Very Low Risk", \
+                 "E-Low Risk", "F-Low Risk", "G-Low Risk",  "H-Medium Risk", "I-Medium Risk", "J-High Risk", "K-High Risk",\
+                 "L-Very High Risk", "M-Very High Risk", "No Bureau History Available", "Not Scored: No Activity seen on the customer (Inactive)", \
+                 "Not Scored: Not Enough Info available on the customer", "Not Scored: Sufficient History Not Available", "Not Scored: Only a Guarantor",\
+                "Not Scored: No Updates available in last 36 months1", "Not Scored: More than 50 active Accounts found"]
+
+
+
+# sns.boxplot(x="PERFORM_CNS.SCORE.DESCRIPTION", y="PERFORM_CNS.SCORE", color="b", data=df_subset)
+# plt.show()
+
+def df_boxplot(df, xstr, ystr):
+    sns.boxplot(x=xstr, y=ystr, palette=sns.color_palette(), data=df)
+    plt.show()
+
+
+# continuous variable vs target
+df_subset = merge_df[merge_df['PERFORM_CNS.SCORE.DESCRIPTION'] < 13]
+df_boxplot(df_subset, "PERFORM_CNS.SCORE.DESCRIPTION", "PERFORM_CNS.SCORE")
+
+
+#continuous variable vs target
+df_boxplot(merge_df, "loan_default", y="PERFORM_CNS.SCORE")
+
+
+# t-test
+# stats.ttest_ind(a, b, equal_var = False)

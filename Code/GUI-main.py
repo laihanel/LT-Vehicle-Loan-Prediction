@@ -138,6 +138,17 @@ class DecisionTree(QMainWindow):
         self.feature22 = QCheckBox(features_list[22], self)
         self.feature23 = QCheckBox(features_list[23], self)
         self.feature24 = QCheckBox(features_list[24], self)
+        self.feature25 = QCheckBox(features_list[25], self)
+        self.feature26 = QCheckBox(features_list[26], self)
+        self.feature27 = QCheckBox(features_list[27], self)
+        self.feature28 = QCheckBox(features_list[28], self)
+        self.feature29 = QCheckBox(features_list[29], self)
+        self.feature30 = QCheckBox(features_list[30], self)
+        self.feature31 = QCheckBox(features_list[31], self)
+        self.feature32 = QCheckBox(features_list[32], self)
+        self.feature33 = QCheckBox(features_list[33], self)
+        self.feature34 = QCheckBox(features_list[34], self)
+        self.feature35 = QCheckBox(features_list[35], self)
 
         self.feature0.setChecked(True)
         self.feature1.setChecked(True)
@@ -164,6 +175,17 @@ class DecisionTree(QMainWindow):
         self.feature22.setChecked(True)
         self.feature23.setChecked(True)
         self.feature24.setChecked(True)
+        self.feature25.setChecked(True)
+        self.feature26.setChecked(True)
+        self.feature27.setChecked(True)
+        self.feature28.setChecked(True)
+        self.feature29.setChecked(True)
+        self.feature30.setChecked(True)
+        self.feature31.setChecked(True)
+        self.feature32.setChecked(True)
+        self.feature33.setChecked(True)
+        self.feature34.setChecked(True)
+        self.feature35.setChecked(True)
 
 
         self.lblPercentTest = QLabel('Percentage for Test :')
@@ -484,7 +506,7 @@ class DecisionTree(QMainWindow):
 
         if self.feature21.isChecked():
             if len(self.list_corr_features) == 20:
-                self.list_corr_features = df[features_list[1]]
+                self.list_corr_features = df[features_list[21]]
             else:
                 self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[21]]],axis=1)
 
@@ -506,7 +528,71 @@ class DecisionTree(QMainWindow):
             else:
                 self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[24]]],axis=1)
 
+        if self.feature25.isChecked():
+            if len(self.list_corr_features)==0:
+                self.list_corr_features = df[features_list[25]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[25]]],axis=1)
 
+        if self.feature26.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[26]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[26]]],axis=1)
+
+        if self.feature27.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[27]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[27]]],axis=1)
+
+        if self.feature28.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[28]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[28]]],axis=1)
+
+        if self.feature29.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[29]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[29]]],axis=1)
+
+        if self.feature30.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[30]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[30]]], axis=1)
+
+        if self.feature31.isChecked():
+            if len(self.list_corr_features) == 20:
+                self.list_corr_features = df[features_list[31]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[31]]], axis=1)
+
+        if self.feature32.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[32]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[32]]], axis=1)
+
+        if self.feature33.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[33]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[33]]], axis=1)
+
+        if self.feature34.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[34]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[34]]], axis=1)
+
+        if self.feature35.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[35]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[35]]], axis=1)
 
 
         vtest_per = float(self.txtPercentTest.text())
@@ -523,14 +609,16 @@ class DecisionTree(QMainWindow):
         vtest_per = vtest_per / 100
 
         # -----------------------------------------------------------------------
-        filename = 'dt_finalized_model.sav'
+        filename = 'dt_finalized_model2.sav'
         self.clf_entropy = pickle.load(open(filename, 'rb'))
         y_test = y
-        X_test= X[features_list]
+        X_test= X
+        #
+        # scalar = StandardScaler()
+        # X_test = scalar.fit_transform(X)
 
         # predicton on test using entropy
         y_pred_entropy = self.clf_entropy.predict(X_test)
-
         # confusion matrix for RandomForest
         conf_matrix = confusion_matrix(y_test, y_pred_entropy)
 
@@ -552,7 +640,7 @@ class DecisionTree(QMainWindow):
 
         # f1_score
 
-        self.ff_f1_score = f1_score(y_test, y_pred_entropy)
+        self.ff_f1_score = f1_score(y_test, y_pred_entropy) * 100
         self.txtCurrentF1score.setText(str(self.ff_f1_score))
 
         #::------------------------------------
@@ -657,19 +745,19 @@ class DecisionTree(QMainWindow):
         # Other Models Comparison
         #::-----------------------------------------------------
 
-        filename2 = 'lr_finalized_model.sav'
+        filename2 = 'lr_finalized_model2.sav'
         self.other_clf_lr = pickle.load(open(filename2, 'rb'))
         y_pred_lr = self.other_clf_lr.predict(X_test)
         self.accuracy_lr = accuracy_score(y_test, y_pred_lr) * 100
         self.txtAccuracy_lr.setText(str(self.accuracy_lr))
 
-        filename3 = 'rf_finalized_model.sav'
+        filename3 = 'rf_finalized_model2.sav'
         self.other_clf_rf = pickle.load(open(filename3, 'rb'))
         y_pred_rf = self.other_clf_rf.predict(X_test)
         self.accuracy_rf = accuracy_score(y_test, y_pred_rf) * 100
         self.txtAccuracy_rf.setText(str(self.accuracy_rf))
 
-        filename4 = 'gb_finalized_model.sav'
+        filename4 = 'gb_finalized_model2.sav'
         self.other_clf_gb = pickle.load(open(filename4, 'rb'))
         y_pred_gb = self.other_clf_gb.predict(X_test)
         self.accuracy_gb = accuracy_score(y_test, y_pred_gb) * 100
@@ -720,12 +808,12 @@ class RandomForest(QMainWindow):
         self.groupBox1Layout= QGridLayout()
         self.groupBox1.setLayout(self.groupBox1Layout)
 
-        self.feature0 = QCheckBox(features_list[0],self)
-        self.feature1 = QCheckBox(features_list[1],self)
+        self.feature0 = QCheckBox(features_list[0], self)
+        self.feature1 = QCheckBox(features_list[1], self)
         self.feature2 = QCheckBox(features_list[2], self)
         self.feature3 = QCheckBox(features_list[3], self)
-        self.feature4 = QCheckBox(features_list[4],self)
-        self.feature5 = QCheckBox(features_list[5],self)
+        self.feature4 = QCheckBox(features_list[4], self)
+        self.feature5 = QCheckBox(features_list[5], self)
         self.feature6 = QCheckBox(features_list[6], self)
         self.feature7 = QCheckBox(features_list[7], self)
         self.feature8 = QCheckBox(features_list[8], self)
@@ -745,6 +833,17 @@ class RandomForest(QMainWindow):
         self.feature22 = QCheckBox(features_list[22], self)
         self.feature23 = QCheckBox(features_list[23], self)
         self.feature24 = QCheckBox(features_list[24], self)
+        self.feature25 = QCheckBox(features_list[25], self)
+        self.feature26 = QCheckBox(features_list[26], self)
+        self.feature27 = QCheckBox(features_list[27], self)
+        self.feature28 = QCheckBox(features_list[28], self)
+        self.feature29 = QCheckBox(features_list[29], self)
+        self.feature30 = QCheckBox(features_list[30], self)
+        self.feature31 = QCheckBox(features_list[31], self)
+        self.feature32 = QCheckBox(features_list[32], self)
+        self.feature33 = QCheckBox(features_list[33], self)
+        self.feature34 = QCheckBox(features_list[34], self)
+        self.feature35 = QCheckBox(features_list[35], self)
 
         self.feature0.setChecked(True)
         self.feature1.setChecked(True)
@@ -771,7 +870,17 @@ class RandomForest(QMainWindow):
         self.feature22.setChecked(True)
         self.feature23.setChecked(True)
         self.feature24.setChecked(True)
-
+        self.feature25.setChecked(True)
+        self.feature26.setChecked(True)
+        self.feature27.setChecked(True)
+        self.feature28.setChecked(True)
+        self.feature29.setChecked(True)
+        self.feature30.setChecked(True)
+        self.feature31.setChecked(True)
+        self.feature32.setChecked(True)
+        self.feature33.setChecked(True)
+        self.feature34.setChecked(True)
+        self.feature35.setChecked(True)
 
         self.lblPercentTest = QLabel('Percentage for Test :')
         self.lblPercentTest.adjustSize()
@@ -1113,6 +1222,72 @@ class RandomForest(QMainWindow):
             else:
                 self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[24]]],axis=1)
 
+        if self.feature25.isChecked():
+            if len(self.list_corr_features)==0:
+                self.list_corr_features = df[features_list[25]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[25]]],axis=1)
+
+        if self.feature26.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[26]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[26]]],axis=1)
+
+        if self.feature27.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[27]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[27]]],axis=1)
+
+        if self.feature28.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[28]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[28]]],axis=1)
+
+        if self.feature29.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[29]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[29]]],axis=1)
+
+        if self.feature30.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[30]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[30]]], axis=1)
+
+        if self.feature31.isChecked():
+            if len(self.list_corr_features) == 20:
+                self.list_corr_features = df[features_list[31]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[31]]], axis=1)
+
+        if self.feature32.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[32]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[32]]], axis=1)
+
+        if self.feature33.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[33]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[33]]], axis=1)
+
+        if self.feature34.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[34]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[34]]], axis=1)
+
+        if self.feature35.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[35]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[35]]], axis=1)
+
 
 
 
@@ -1128,7 +1303,7 @@ class RandomForest(QMainWindow):
         # self.txtResults.setUndoRedoEnabled(False)
 
         vtest_per = vtest_per / 100
-        filename = 'rf_finalized_model.sav'
+        filename = 'rf_finalized_model2.sav'
         self.clf_entropy = pickle.load(open(filename, 'rb'))
         y_test = y
         X_test = X[features_list]
@@ -1160,7 +1335,7 @@ class RandomForest(QMainWindow):
 
         # f1_score
 
-        self.ff_f1_score = f1_score(y_test, y_pred_entropy)
+        self.ff_f1_score = f1_score(y_test, y_pred_entropy) * 100
         self.txtCurrentF1score.setText(str(self.ff_f1_score))
 
         #::------------------------------------
@@ -1264,19 +1439,19 @@ class RandomForest(QMainWindow):
         #::-----------------------------------------------------
         # Other Models Comparison
         #::-----------------------------------------------------
-        filename2 = 'lr_finalized_model.sav'
+        filename2 = 'lr_finalized_model2.sav'
         self.other_clf_lr = pickle.load(open(filename2, 'rb'))
         y_pred_lr = self.other_clf_lr.predict(X_test)
         self.accuracy_lr = accuracy_score(y_test, y_pred_lr) * 100
         self.txtAccuracy_lr.setText(str(self.accuracy_lr))
 
-        filename3 = 'dt_finalized_model.sav'
+        filename3 = 'dt_finalized_model2.sav'
         self.other_clf_dt = pickle.load(open(filename3, 'rb'))
         y_pred_dt = self.other_clf_dt.predict(X_test)
         self.accuracy_dt = accuracy_score(y_test, y_pred_dt) * 100
         self.txtAccuracy_dt.setText(str(self.accuracy_dt))
 
-        filename4 = 'gb_finalized_model.sav'
+        filename4 = 'gb_finalized_model2.sav'
         self.other_clf_gb = pickle.load(open(filename4, 'rb'))
         y_pred_gb = self.other_clf_gb.predict(X_test)
         self.accuracy_gb = accuracy_score(y_test, y_pred_gb) * 100
@@ -1319,12 +1494,12 @@ class LogisticReg(QMainWindow):
         self.groupBox1Layout= QGridLayout()
         self.groupBox1.setLayout(self.groupBox1Layout)
 
-        self.feature0 = QCheckBox(features_list[0],self)
-        self.feature1 = QCheckBox(features_list[1],self)
+        self.feature0 = QCheckBox(features_list[0], self)
+        self.feature1 = QCheckBox(features_list[1], self)
         self.feature2 = QCheckBox(features_list[2], self)
         self.feature3 = QCheckBox(features_list[3], self)
-        self.feature4 = QCheckBox(features_list[4],self)
-        self.feature5 = QCheckBox(features_list[5],self)
+        self.feature4 = QCheckBox(features_list[4], self)
+        self.feature5 = QCheckBox(features_list[5], self)
         self.feature6 = QCheckBox(features_list[6], self)
         self.feature7 = QCheckBox(features_list[7], self)
         self.feature8 = QCheckBox(features_list[8], self)
@@ -1344,6 +1519,17 @@ class LogisticReg(QMainWindow):
         self.feature22 = QCheckBox(features_list[22], self)
         self.feature23 = QCheckBox(features_list[23], self)
         self.feature24 = QCheckBox(features_list[24], self)
+        self.feature25 = QCheckBox(features_list[25], self)
+        self.feature26 = QCheckBox(features_list[26], self)
+        self.feature27 = QCheckBox(features_list[27], self)
+        self.feature28 = QCheckBox(features_list[28], self)
+        self.feature29 = QCheckBox(features_list[29], self)
+        self.feature30 = QCheckBox(features_list[30], self)
+        self.feature31 = QCheckBox(features_list[31], self)
+        self.feature32 = QCheckBox(features_list[32], self)
+        self.feature33 = QCheckBox(features_list[33], self)
+        self.feature34 = QCheckBox(features_list[34], self)
+        self.feature35 = QCheckBox(features_list[35], self)
 
         self.feature0.setChecked(True)
         self.feature1.setChecked(True)
@@ -1370,7 +1556,17 @@ class LogisticReg(QMainWindow):
         self.feature22.setChecked(True)
         self.feature23.setChecked(True)
         self.feature24.setChecked(True)
-
+        self.feature25.setChecked(True)
+        self.feature26.setChecked(True)
+        self.feature27.setChecked(True)
+        self.feature28.setChecked(True)
+        self.feature29.setChecked(True)
+        self.feature30.setChecked(True)
+        self.feature31.setChecked(True)
+        self.feature32.setChecked(True)
+        self.feature33.setChecked(True)
+        self.feature34.setChecked(True)
+        self.feature35.setChecked(True)
 
         self.lblPercentTest = QLabel('Percentage for Test :')
         self.lblPercentTest.adjustSize()
@@ -1706,6 +1902,72 @@ class LogisticReg(QMainWindow):
             else:
                 self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[24]]],axis=1)
 
+        if self.feature25.isChecked():
+            if len(self.list_corr_features)==0:
+                self.list_corr_features = df[features_list[25]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[25]]],axis=1)
+
+        if self.feature26.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[26]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[26]]],axis=1)
+
+        if self.feature27.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[27]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[27]]],axis=1)
+
+        if self.feature28.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[28]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[28]]],axis=1)
+
+        if self.feature29.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[29]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[29]]],axis=1)
+
+        if self.feature30.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[30]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[30]]], axis=1)
+
+        if self.feature31.isChecked():
+            if len(self.list_corr_features) == 20:
+                self.list_corr_features = df[features_list[31]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[31]]], axis=1)
+
+        if self.feature32.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[32]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[32]]], axis=1)
+
+        if self.feature33.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[33]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[33]]], axis=1)
+
+        if self.feature34.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[34]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[34]]], axis=1)
+
+        if self.feature35.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[35]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[35]]], axis=1)
+
 
 
 
@@ -1721,7 +1983,7 @@ class LogisticReg(QMainWindow):
         # self.txtResults.setUndoRedoEnabled(False)
 
         vtest_per = vtest_per / 100
-        filename = 'lr_finalized_model.sav'
+        filename = 'lr_finalized_model2.sav'
         self.clf_entropy = pickle.load(open(filename, 'rb'))
         y_test = y
         X_test = X[features_list]
@@ -1755,7 +2017,7 @@ class LogisticReg(QMainWindow):
 
         # f1_score
 
-        self.ff_f1_score = f1_score(y_test, y_pred_entropy)
+        self.ff_f1_score = f1_score(y_test, y_pred_entropy) * 100
         self.txtCurrentF1score.setText(str(self.ff_f1_score))
 
         #::------------------------------------
@@ -1855,19 +2117,19 @@ class LogisticReg(QMainWindow):
         # Other Models Comparison
         #::-----------------------------------------------------
 
-        filename2 = 'dt_finalized_model.sav'
+        filename2 = 'dt_finalized_model2.sav'
         self.other_clf_dt = pickle.load(open(filename2, 'rb'))
         y_pred_dt = self.other_clf_dt.predict(X_test)
         self.accuracy_dt = accuracy_score(y_test, y_pred_dt) * 100
         self.txtAccuracy_dt.setText(str(self.accuracy_dt))
 
-        filename3 = 'rf_finalized_model.sav'
+        filename3 = 'rf_finalized_model2.sav'
         self.other_clf_rf = pickle.load(open(filename3, 'rb'))
         y_pred_rf = self.other_clf_rf.predict(X_test)
         self.accuracy_rf = accuracy_score(y_test, y_pred_rf) * 100
         self.txtAccuracy_rf.setText(str(self.accuracy_rf))
 
-        filename4 = 'gb_finalized_model.sav'
+        filename4 = 'gb_finalized_model2.sav'
         self.other_clf_gb = pickle.load(open(filename4, 'rb'))
         y_pred_gb = self.other_clf_gb.predict(X_test)
         self.accuracy_gb = accuracy_score(y_test, y_pred_gb) * 100
@@ -1908,12 +2170,12 @@ class GradientBoosting(QMainWindow):
         self.groupBox1Layout= QGridLayout()
         self.groupBox1.setLayout(self.groupBox1Layout)
 
-        self.feature0 = QCheckBox(features_list[0],self)
-        self.feature1 = QCheckBox(features_list[1],self)
+        self.feature0 = QCheckBox(features_list[0], self)
+        self.feature1 = QCheckBox(features_list[1], self)
         self.feature2 = QCheckBox(features_list[2], self)
         self.feature3 = QCheckBox(features_list[3], self)
-        self.feature4 = QCheckBox(features_list[4],self)
-        self.feature5 = QCheckBox(features_list[5],self)
+        self.feature4 = QCheckBox(features_list[4], self)
+        self.feature5 = QCheckBox(features_list[5], self)
         self.feature6 = QCheckBox(features_list[6], self)
         self.feature7 = QCheckBox(features_list[7], self)
         self.feature8 = QCheckBox(features_list[8], self)
@@ -1933,6 +2195,17 @@ class GradientBoosting(QMainWindow):
         self.feature22 = QCheckBox(features_list[22], self)
         self.feature23 = QCheckBox(features_list[23], self)
         self.feature24 = QCheckBox(features_list[24], self)
+        self.feature25 = QCheckBox(features_list[25], self)
+        self.feature26 = QCheckBox(features_list[26], self)
+        self.feature27 = QCheckBox(features_list[27], self)
+        self.feature28 = QCheckBox(features_list[28], self)
+        self.feature29 = QCheckBox(features_list[29], self)
+        self.feature30 = QCheckBox(features_list[30], self)
+        self.feature31 = QCheckBox(features_list[31], self)
+        self.feature32 = QCheckBox(features_list[32], self)
+        self.feature33 = QCheckBox(features_list[33], self)
+        self.feature34 = QCheckBox(features_list[34], self)
+        self.feature35 = QCheckBox(features_list[35], self)
 
         self.feature0.setChecked(True)
         self.feature1.setChecked(True)
@@ -1959,7 +2232,17 @@ class GradientBoosting(QMainWindow):
         self.feature22.setChecked(True)
         self.feature23.setChecked(True)
         self.feature24.setChecked(True)
-
+        self.feature25.setChecked(True)
+        self.feature26.setChecked(True)
+        self.feature27.setChecked(True)
+        self.feature28.setChecked(True)
+        self.feature29.setChecked(True)
+        self.feature30.setChecked(True)
+        self.feature31.setChecked(True)
+        self.feature32.setChecked(True)
+        self.feature33.setChecked(True)
+        self.feature34.setChecked(True)
+        self.feature35.setChecked(True)
 
         self.lblPercentTest = QLabel('Percentage for Test :')
         self.lblPercentTest.adjustSize()
@@ -2294,6 +2577,72 @@ class GradientBoosting(QMainWindow):
             else:
                 self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[24]]],axis=1)
 
+        if self.feature25.isChecked():
+            if len(self.list_corr_features)==0:
+                self.list_corr_features = df[features_list[25]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[25]]],axis=1)
+
+        if self.feature26.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[26]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[26]]],axis=1)
+
+        if self.feature27.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[27]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[27]]],axis=1)
+
+        if self.feature28.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[28]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[28]]],axis=1)
+
+        if self.feature29.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[29]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[29]]],axis=1)
+
+        if self.feature30.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[30]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[30]]], axis=1)
+
+        if self.feature31.isChecked():
+            if len(self.list_corr_features) == 20:
+                self.list_corr_features = df[features_list[31]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[31]]], axis=1)
+
+        if self.feature32.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[32]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[32]]], axis=1)
+
+        if self.feature33.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[33]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[33]]], axis=1)
+
+        if self.feature34.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[34]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[34]]], axis=1)
+
+        if self.feature35.isChecked():
+            if len(self.list_corr_features) == 0:
+                self.list_corr_features = df[features_list[35]]
+            else:
+                self.list_corr_features = pd.concat([self.list_corr_features, df[features_list[35]]], axis=1)
+
 
 
 
@@ -2309,7 +2658,7 @@ class GradientBoosting(QMainWindow):
         # self.txtResults.setUndoRedoEnabled(False)
 
         vtest_per = vtest_per / 100
-        filename = 'gb_finalized_model.sav'
+        filename = 'gb_finalized_model2.sav'
         self.clf_entropy = pickle.load(open(filename, 'rb'))
         y_test = y
         X_test = X[features_list]
@@ -2342,7 +2691,7 @@ class GradientBoosting(QMainWindow):
 
         # f1_score
 
-        self.ff_f1_score = f1_score(y_test, y_pred_entropy)
+        self.ff_f1_score = f1_score(y_test, y_pred_entropy) * 100
         self.txtCurrentF1score.setText(str(self.ff_f1_score))
 
         #::------------------------------------
@@ -2442,19 +2791,19 @@ class GradientBoosting(QMainWindow):
         # Other Models Comparison
         #::-----------------------------------------------------
 
-        filename2 = 'lr_finalized_model.sav'
+        filename2 = 'lr_finalized_model2.sav'
         self.other_clf_lr = pickle.load(open(filename2, 'rb'))
         y_pred_lr = self.other_clf_lr.predict(X_test)
         self.accuracy_lr = accuracy_score(y_test, y_pred_lr) * 100
         self.txtAccuracy_lr.setText(str(self.accuracy_lr))
 
-        filename3 = 'rf_finalized_model.sav'
+        filename3 = 'rf_finalized_model2.sav'
         self.other_clf_rf = pickle.load(open(filename3, 'rb'))
         y_pred_rf = self.other_clf_rf.predict(X_test)
         self.accuracy_rf = accuracy_score(y_test, y_pred_rf) * 100
         self.txtAccuracy_rf.setText(str(self.accuracy_rf))
 
-        filename4 = 'dt_finalized_model.sav'
+        filename4 = 'dt_finalized_model2.sav'
         self.other_clf_dt = pickle.load(open(filename4, 'rb'))
         y_pred_dt = self.other_clf_dt.predict(X_test)
         self.accuracy_dt = accuracy_score(y_test, y_pred_dt) * 100
@@ -3334,20 +3683,19 @@ def data_loan():
     global df
     df_orig = pd.read_csv(r'lt-vehicle-loan-default-prediction/train.csv')
     # df = pd.read_csv(r'lt-vehicle-loan-default-prediction/UItry.csv')
-    df=pd.read_csv(r'lt-vehicle-loan-default-prediction/final_test.csv')
+    df=pd.read_csv(r'lt-vehicle-loan-default-prediction/final_test2.csv')
 
     target = 'loan_default'
-    X= df.drop([target], axis=1)
-    y= df[target]
+    X = df.drop([target], axis=1)
+    y= df[target].fillna(0)
 
     columns = X.columns.tolist()
 
 
-
-    indexes = [0,1,2,3,4,5,6,8,9,10,13,14,15,16,17,18,19,26,28,30,31,32,33,34,35]
-    features_list=['index', 'disbursed_amount', 'asset_cost', 'ltv', 'branch_id', 'manufacturer_id', 'Employment.Type', 'MobileNo_Avl_Flag', 'Aadhar_flag', 'PAN_flag', 'Passport_flag', 'PERFORM_CNS.SCORE', 'PRI.NO.OF.ACCTS', 'PRI.ACTIVE.ACCTS', 'PRI.OVERDUE.ACCTS', 'PRI.CURRENT.BALANCE', 'PRI.SANCTIONED.AMOUNT', 'SEC.DISBURSED.AMOUNT', 'SEC.INSTAL.AMT', 'DELINQUENT.ACCTS.IN.LAST.SIX.MONTHS', 'AVERAGE.ACCT.AGE', 'CREDIT.HISTORY.LENGTH', 'NO.OF_INQUIRIES', 'Age', 'Disbursal_months']
-    features_list = [columns[i+1] for i in indexes]
-
+    # indexes = [0,1,2,3,4,5,6,8,9,10,13,14,15,16,17,18,19,26,28,30,31,32,33,34,35]
+    # features_list=['index', 'disbursed_amount', 'asset_cost', 'ltv', 'branch_id', 'manufacturer_id', 'Employment.Type', 'MobileNo_Avl_Flag', 'Aadhar_flag', 'PAN_flag', 'Passport_flag', 'PERFORM_CNS.SCORE', 'PRI.NO.OF.ACCTS', 'PRI.ACTIVE.ACCTS', 'PRI.OVERDUE.ACCTS', 'PRI.CURRENT.BALANCE', 'PRI.SANCTIONED.AMOUNT', 'SEC.DISBURSED.AMOUNT', 'SEC.INSTAL.AMT', 'DELINQUENT.ACCTS.IN.LAST.SIX.MONTHS', 'AVERAGE.ACCT.AGE', 'CREDIT.HISTORY.LENGTH', 'NO.OF_INQUIRIES', 'Age', 'Disbursal_months']
+    # features_list = [columns[i+1] for i in indexes]
+    features_list = columns
     class_names = ['No', 'Yes']
 
     categorical = ['Employment.Type', 'PERFORM_CNS.SCORE.DESCRIPTION', 'AVERAGE.ACCT.AGE' \

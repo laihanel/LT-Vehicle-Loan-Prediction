@@ -173,7 +173,7 @@ y = pd.DataFrame({'loan_default': y})
 X_train, X_test, y_train, y_test = train_test_split(df_temp, y, test_size=0.3, random_state=1)
 
 testing = pd.concat([X_test, y_test], axis=1)
-testing.to_csv(r"final_test2.csv", index=False)
+testing.to_csv(r"lt-vehicle-loan-default-prediction/final_test2.csv", index=False)
 
 '''
 ################## Modelling, please comment this part if necessary ######################

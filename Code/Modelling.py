@@ -26,6 +26,110 @@ from sklearn.decomposition import PCA
 import random
 from sklearn.model_selection import train_test_split
 
+# '''
+# train = pd.read_csv("train.csv")
+# test  = pd.read_csv("test.csv") #uploaded to Google Colab directly
+#
+# # Looking at the data headers, these values aren't required
+#
+# #feature to drop here
+# train = train.drop(['UniqueID', 'supplier_id', 'Current_pincode_ID', 'Date.of.Birth', 'DisbursalDate', 'Employee_code_ID'], axis = 1)
+#
+# test = test.drop(['UniqueID', 'supplier_id', 'Current_pincode_ID', 'Date.of.Birth', 'DisbursalDate', 'Employee_code_ID'], axis = 1)
+#
+# print(train.shape)
+# print(test.shape)
+#
+# Y = train.iloc[:, -1] #last column is the the prediction in the training set
+#
+# Y.shape
+#
+# X = train.drop(['loan_default'], axis = 1)
+#
+# X.shape
+#
+# test_X = test.iloc[:,:]
+#
+# X.sample(3) # Checking whether irrelevant rows are dropped or not
+#
+# X['Employment.Type'].fillna('Self employed', inplace = True)
+# test_X['Employment.Type'].fillna('Self employed', inplace = True)
+#
+# X['Employment.Type'].value_counts()
+#
+# X['Employment.Type'] = X['Employment.Type'].replace(('Unemployed', 'Salaried', 'Self employed'), (0, 1, 2))
+# test_X['Employment.Type'] = test_X['Employment.Type'].replace(('Unemployed', 'Salaried', 'Self employed'), (0, 1, 2))
+#
+# X['Employment.Type'].value_counts() #Converted irrelevant strings to numbers for computations while training
+#
+# X['PERFORM_CNS.SCORE.DESCRIPTION'].value_counts()
+#
+# X['PERFORM_CNS.SCORE.DESCRIPTION'] = X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('No Bureau History Available',
+#                                      'Not Scored: Sufficient History Not Available','Not Scored: Not Enough Info available on the customer',
+#                                      'Not Scored: No Activity seen on the customer (Inactive)',
+#                                      'Not Scored: No Updates available in last 36 months', 'Not Scored: Only a Guarantor',
+#                                      'Not Scored: More than 50 active Accounts found'),(0, 0, 0, 0, 0, 0, 0))
+#
+# X['PERFORM_CNS.SCORE.DESCRIPTION'] = X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('L-Very High Risk', 'M-Very High Risk'), (1, 1))
+#
+# X['PERFORM_CNS.SCORE.DESCRIPTION'] = X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('J-High Risk', 'K-High Risk'), (2, 2))
+#
+# X['PERFORM_CNS.SCORE.DESCRIPTION'] = X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('H-Medium Risk', 'I-Medium Risk'), (3, 3))
+#
+# X['PERFORM_CNS.SCORE.DESCRIPTION'] = X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('E-Low Risk', 'F-Low Risk', 'G-Low Risk'), (4, 4, 4))
+#
+# X['PERFORM_CNS.SCORE.DESCRIPTION'] = X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('A-Very Low Risk', 'B-Very Low Risk',
+#                                       'C-Very Low Risk', 'D-Very Low Risk'), (5, 5, 5, 5))
+#
+# X['PERFORM_CNS.SCORE.DESCRIPTION'].value_counts()
+#
+# test_X['PERFORM_CNS.SCORE.DESCRIPTION'].value_counts()
+#
+# test_X['PERFORM_CNS.SCORE.DESCRIPTION'] = test_X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('No Bureau History Available',
+#                                      'Not Scored: Sufficient History Not Available','Not Scored: Not Enough Info available on the customer',
+#                                      'Not Scored: No Activity seen on the customer (Inactive)',
+#                                      'Not Scored: No Updates available in last 36 months', 'Not Scored: Only a Guarantor',
+#                                      'Not Scored: More than 50 active Accounts found'),(0, 0, 0, 0, 0, 0, 0))
+#
+# test_X['PERFORM_CNS.SCORE.DESCRIPTION'] = test_X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('L-Very High Risk', 'M-Very High Risk'), (1, 1))
+#
+# test_X['PERFORM_CNS.SCORE.DESCRIPTION'] = test_X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('J-High Risk', 'K-High Risk'), (2, 2))
+#
+# test_X['PERFORM_CNS.SCORE.DESCRIPTION'] = test_X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('H-Medium Risk', 'I-Medium Risk'), (3, 3))
+#
+# test_X['PERFORM_CNS.SCORE.DESCRIPTION'] = test_X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('E-Low Risk', 'F-Low Risk', 'G-Low Risk'), (4, 4, 4))
+#
+# test_X['PERFORM_CNS.SCORE.DESCRIPTION'] = test_X['PERFORM_CNS.SCORE.DESCRIPTION'].replace(('A-Very Low Risk', 'B-Very Low Risk',
+#                                       'C-Very Low Risk', 'D-Very Low Risk'), (5, 5, 5, 5))
+#
+# test_X['PERFORM_CNS.SCORE.DESCRIPTION'].value_counts()
+#
+# import re
+# def toMonths(str):
+#   cache = []
+#   for k in X[str]:
+#     temp = int(re.split("[yrs mon]+", k)[0]) * 12 + int(re.split("[yrs mon]+", k)[1])
+#     cache.append(temp)
+#   return cache
+#
+# def toMonthstest(str):
+#   cache = []
+#   for k in test_X[str]:
+#     temp = int(re.split("[yrs mon]+", k)[0]) * 12 + int(re.split("[yrs mon]+", k)[1])
+#     cache.append(temp)
+#   return cache
+#
+# X['CREDIT.HISTORY.LENGTH'] = toMonths('CREDIT.HISTORY.LENGTH')
+# X['CREDIT.HISTORY.LENGTH'][:5]
+#
+# X['AVERAGE.ACCT.AGE'] = toMonths('AVERAGE.ACCT.AGE')
+#
+# X['AVERAGE.ACCT.AGE'][:5]
+#
+# test_X['CREDIT.HISTORY.LENGTH'] = toMonthstest('CREDIT.HISTORY.LENGTH')
+# test_X['AVERAGE.ACCT.AGE'] = toMonthstest('AVERAGE.ACCT.AGE')
+# test_X['AVERAGE.ACCT.AGE'][0:5] '''
+
 
 '''
 ############################# Final Result ##############################
@@ -261,7 +365,7 @@ train["State_ID"].replace({22:'A',20:'A',10:'A',1:'A',
 #                                       "cat_supplier_id"])
 
 train.to_csv(r"lt-vehicle-loan-default-prediction/final_train1.csv",index=False)
-train = pd.read_csv(r"lt-vehicle-loan-default-prediction/final_train_temp.csv") # Change this according to your data location
+train = pd.read_csv(r"lt-vehicle-loan-default-prediction/final_train1.csv") # Change this according to your data location
 
 
 def split_data(inpath, target_name, test_size):
@@ -281,7 +385,7 @@ def split_data(inpath, target_name, test_size):
   return X_train, X_test, y_train, y_test
 
 
-X_train, X_test, y_train, y_test = split_data(r"lt-vehicle-loan-default-prediction/final_train_temp.csv", 'loan_default', 0.3)
+X_train, X_test, y_train, y_test = split_data(r"lt-vehicle-loan-default-prediction/final_train1.csv", 'loan_default', 0.3)
 y_test2 = pd.DataFrame({'loan_default':y_test})
 testing = pd.concat([X_test.reset_index(), y_test2], axis=1)
 testing.to_csv(r"lt-vehicle-loan-default-prediction/final_test.csv",index=False)

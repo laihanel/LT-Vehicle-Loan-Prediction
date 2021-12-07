@@ -31,7 +31,7 @@ There are some general library requirements for the project and some which are s
 * Individual-Final-Project-Report: individual reports
 
 ## Contributors
-Mrunalini Devineni
-Sara Sanchez
-Aihan Liu
+Mrunalini Devineni  
+Sara Sanchez  
+Aihan Liu  
 

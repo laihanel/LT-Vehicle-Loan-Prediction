@@ -3,7 +3,7 @@
 
 ## Dataset Information
 For this study, we have chosen to analyze an L&T company dataset, in charge of cars' sale from kaggle.com (https://www.kaggle.com/mamtadhaker/lt-vehicle-loan-default-prediction). This dataset is like the one that financial institution must build the scoring models that allow them to forecast the approval or rejection of customers. This dataset does not require any cleaning and is equipped to fuel the analysis of this project. The base consists of 40 variables and 233 154 observations assessing a person's attributes ranging from demographic data (date of birth, etc.) and bureau data, like the amount of loan disbursed and the asset's cost.  
-The following Information regarding the loan and loanee are provided in the datasets:
+The following Information regarding the loan and loanee are provided in the datasets:  
 •	Loanee Information (Demographic data like age, Identity proof etc.)  
 •	Loan Information (Disbursal details, loan to value ratio etc.)  
 •	Bureau data & history (Bureau score, number of active accounts, the status of other loans, credit history etc.)  

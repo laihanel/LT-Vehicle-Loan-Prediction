@@ -1,4 +1,4 @@
-# Final-Project-Group3
+# L&T Vehicle Loan Prediction
 2021DATAS6103-Data Mining Final Project Group 3
 
 ## Dataset Information
